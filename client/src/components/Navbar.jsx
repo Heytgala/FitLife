@@ -107,9 +107,29 @@ const MobileMenu = styled.ul`
   z-index: ${({ isOpen }) => (isOpen ? "1000" : "-1000")};
 `;
 
+const UserContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  align-items: center;
+  padding: 0 6px;
+  color: ${({ theme }) => theme.primary};
+`;
+const TextButton = styled.div`
+  text-align: end;
+  color: ${({ theme }) => theme.secondary};
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+  }
+`;
 
-
-const Navbar = () => {
+const Navbar = ({currentUser}) => {
   const dispatch = useDispatch();
   const [isOpen, setisOpen] = useState(false);
   return (
@@ -123,6 +143,14 @@ const Navbar = () => {
                 FitLife
             </NavLogo>
 
+            <MobileMenu>
+
+            </MobileMenu>
+                <Navlink to="/">Dashboard</Navlink>
+                <Navlink to="/workouts">Workouts</Navlink>
+                <Navlink to="/tutorials">Tutorials</Navlink>
+                <Navlink to="/blogs">Blogs</Navlink>
+                <Navlink to="/contact">Contact</Navlink>
             <NavItems>
                 <Navlink to="/">Dashboard</Navlink>
                 <Navlink to="/workouts">Workouts</Navlink>
@@ -130,7 +158,14 @@ const Navbar = () => {
                 <Navlink to="/blogs">Blogs</Navlink>
                 <Navlink to="/contact">Contact</Navlink>
             </NavItems>
+
+            <UserContainer>
+              <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
+              <TextButton onClick={() => dispatch(logout())}>Logout</TextButton>
+            </UserContainer>
+
         </NavContainer>
+        
     </Nav>
   )
 }
