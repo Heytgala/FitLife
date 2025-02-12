@@ -77,7 +77,7 @@ const Dashboard = () => {
 
 const dashboardData = async () => {
   setLoading(true);
-  const token = localStorage.getItem("fittrack-app-token");
+  const token = localStorage.getItem("fitlife-app-token");
   await getDashboardDetails(token).then((res) => {
     setData(res.data);
     console.log(res.data);
@@ -86,7 +86,7 @@ const dashboardData = async () => {
 };
 const getTodaysWorkout = async () => {
   setLoading(true);
-  const token = localStorage.getItem("fittrack-app-token");
+  const token = localStorage.getItem("fitlife-app-token");
   await getWorkouts(token, "").then((res) => {
     setTodaysWorkouts(res?.data?.todaysWorkouts);
     console.log(res.data);
